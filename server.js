@@ -17,8 +17,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 const corsOptions = {
 	credentials: true,
-	origin: process.env.CLIENT_URL || 'http://localhost:3000',
-	methods: 'GET,POST,DELETE,OPTIONS'
+	origin: "*"
 }
 
 app.use(cors(corsOptions));
