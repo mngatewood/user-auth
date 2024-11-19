@@ -20,7 +20,7 @@ router.post('/login', async (req, res) => {
 		}
 
 		let tokens = jwtTokens(user.id, user.username, user.email);
-		res.cookie('refreshToken', tokens.refreshToken, { httpOnly: true });
+		res.cookie('refreshToken', tokens.refreshToken, { httpOnly: true, secure: true, sameSite: 'none' });
 		res.json({ data: { user: { id:user.id, username: user.username, email: user.email, ...tokens } }});
 	} catch (err) {
 		res.status(500).json({ error: err.message });
@@ -38,7 +38,7 @@ router.get('/refresh', async (req, res) => {
 				return res.status(403).json({ error: 'Invalid refresh token' });
 			}
 			let tokens = jwtTokens(user.userId, user.name, user.email);
-			res.cookie('refreshToken', tokens.refreshToken, { httpOnly: true });
+			res.cookie('refreshToken', tokens.refreshToken, { httpOnly: true, secure: true, sameSite: 'none' });
 			res.json(tokens);
 		});
 	} catch (err) {
