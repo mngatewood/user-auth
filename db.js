@@ -10,11 +10,15 @@ let localPoolConfig = {
 	database: 'user-auth',
 };
 
-const poolConfig = process.env.DATABASE_URL ? { 
+const poolConfig = process.env.DATABASE_URL ? (() => {
 	console.log("process.env.DATABASE_URL", process.env.DATABASE_URL);
-	connectionString: process.env.DATABASE_URL, ssl:{ 
-		rejectUnauthorized: false } 
-	} : localPoolConfig;
+	return {
+		connectionString: process.env.DATABASE_URL, 
+		ssl:{ 
+		rejectUnauthorized: false 
+		} 
+	};
+})() : localPoolConfig;
 
 const pool = new Pool(poolConfig);
 
