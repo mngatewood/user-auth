@@ -11,7 +11,6 @@ let localPoolConfig = {
 };
 
 const poolConfig = process.env.DATABASE_URL ? (() => {
-	console.log("process.env.DATABASE_URL", process.env.DATABASE_URL);
 	return {
 		connectionString: process.env.DATABASE_URL, 
 		ssl:{ 
