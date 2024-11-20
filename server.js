@@ -14,6 +14,10 @@ console.log("process.env.CLIENT_URL", process.env.CLIENT_URL);
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL || 'http://localhost:3000');
+	next();
+});
 const port = process.env.PORT || 3001;
 const corsOptions = {
 	credentials: true,
