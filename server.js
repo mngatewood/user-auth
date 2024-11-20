@@ -16,6 +16,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL || 'http://localhost:3000');
+	res.header('Access-Control-Allow-Credentials', 'true');
+	res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Access-Control-Allow-Origin, Access-Control-Allow-Credentials');
 	next();
 });
 const port = process.env.PORT || 3001;
