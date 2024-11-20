@@ -22,16 +22,15 @@ app.use((req, res, next) => {
 	next();
 });
 const port = process.env.PORT || 3001;
-const corsOptions = {
-	credentials: true,
-	origin: process.env.CLIENT_URL || 'http://localhost:3000',
-	methods: "GET,POST,DELETE,OPTIONS",
-	allowedHeaders: "Content-Type, Authorization, Access-Control-Allow-Origin",
-	exposedHeaders: "Content-Type, Authorization, Access-Control-Allow-Origin"
-}
+// const corsOptions = {
+// 	credentials: true,
+// 	origin: process.env.CLIENT_URL || 'http://localhost:3000',
+// 	methods: "GET,POST,DELETE,OPTIONS",
+// 	allowedHeaders: "Content-Type, Authorization, Access-Control-Allow-Origin",
+// 	exposedHeaders: "Content-Type, Authorization, Access-Control-Allow-Origin"
+// }
 
-app.options('*', cors(corsOptions));
-// app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions));
 app.use(json());
 app.use(cookieParser());
 
