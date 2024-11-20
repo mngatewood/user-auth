@@ -8,14 +8,10 @@ const router = express.Router();
 router.post('/', async (req, res) => {
 	try {
 		const { username, email, password } = req.body;
-		console.log("body", req.body);
 		const hashedPassword = await bcrypt.hash(req.body.password, 10);
-		console.log("hashedPassword", hashedPassword);
 		const response = await pool.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *', [username, email, hashedPassword]);
-		console.log("response", response);
 		res.json({ data: { user: response.rows[0] } });
 	} catch (err) {
-		console.log("err", err);
 		res.status(500).json({ error: err.message });
 	}
 });
